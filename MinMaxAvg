@@ -1,0 +1,17 @@
+nums = [-5, 23, 0, -9, 12, 99, 105, -43]
+
+min = nums[0]
+max = nums[0]
+avg = 0
+
+
+for i in nums:
+    avg = (avg + i)
+    if i < min:
+        min = i
+    elif i > max:
+        max = i
+
+print("A lista legkissebb szama:",min)
+print("A lista legnagyobb szama:",max)
+print("Atlag:",avg / len(nums))
