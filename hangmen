@@ -1,0 +1,113 @@
+from __future__ import print_function
+import os
+import time
+
+
+def main():    
+
+    
+
+    feladvany = (list(input("Add meg mit kelljen kitalalnia a masik jatekosnak: ")))
+
+    fade = []
+    hangmen = ['''
+      +---+
+      |   |
+          |
+          |
+          |
+          |
+    =========''', '''
+      +---+
+      |   |
+      O   |
+          |
+          |
+          |
+    =========''', '''
+      +---+
+      |   |
+      O   |
+      |   |
+          |
+          |
+    =========''', '''
+      +---+
+      |   |
+      O   |
+     /|   |
+          |
+          |
+    =========''', '''
+      +---+
+      |   |
+      O   |
+     /|\  |
+          |
+          |
+    =========''', '''
+      +---+
+      |   |
+      O   |
+     /|\  |
+     /    |
+          |
+    =========''', '''
+      +---+
+      |   |
+      O   |
+     /|\  |
+     / \  |
+          |
+    =========''']
+
+
+    for i in range(len(feladvany)):
+        fade.append("___")
+
+
+    print("het eleted van")
+    print()
+
+    i=0
+    while i < 7 and fade != feladvany:
+        print(*fade, sep="  ")
+        guess = (input("Tippelj egy betut: "))
+        guess_1 = list(guess)
+        if guess_1 == feladvany:
+            print("You win!")
+            break
+        elif guess in feladvany:
+            tmp = []
+            for index, s in enumerate(feladvany):
+                if (s == guess):
+                    tmp.append(index)
+                    j=0
+                    os.system("clear")
+                    while j < len(tmp):
+                        fade[tmp[j]] = feladvany [tmp[j]]
+                        j += 1
+                        if fade == feladvany:
+                            print("You win!")
+                            break
+        else:
+            i += 1
+            if 7-i > 0:
+                os.system("clear")
+                print(7 - i, " eleted maradt.")
+                print(" ".join(hangmen[i-1]))
+            else:
+                os.system("clear")
+                print(" ".join(hangmen[i-1]))
+                print("Bukta")
+
+
+    restart = (input("Do you want to play another game?(Yes/No): ")).lower()
+    if restart == "yes":
+        main()    
+    else:
+        exit
+
+
+
+main()
