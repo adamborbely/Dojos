@@ -1,0 +1,91 @@
+field = [["#" for i in range(3)] for z in range(3)] 
+
+def print_field():
+    for i in field:
+        print(i)
+
+def winner_check():
+    for x in range(3):
+        for y in range(3): #range len field
+            if y < 1:  # len(field)-2
+                if field[x][y] == field[x][y+1] == field[x][y+2]:
+                    if field [x][y] == "X":
+                        print("Player 1 won")
+                        return False
+                    if field[x][y] == "O":
+                        print("Player 2 won")
+                        return False
+            if x < 1:
+                if field[x][y] == field[x+1][y] == field[x+2][y]:
+                    if field [x][y] == "X":
+                        print("Player 1 won")
+                        return False
+                    if field[x][y] == "O":
+                        print("Player 2 won")
+                        return False
+            if x < 1 and y < 1:
+                if field[x][y] == field[x+1][y+1] == field[x+2][y+2]:
+                    if field [x][y] == "X":
+                        print("Player 1 won")
+                        return False
+                    if field[x][y] == "O":
+                        print("Player 2 won")
+                        return False
+            if x > 1 and y < 1:
+                if field[x][y] == field[x-1][y+1] == field[x-2][y+2]:
+                    if field [x][y] == "X":
+                        print("Player 1 won")
+                        return False
+                    if field[x][y] == "O":
+                        print("Player 2 won")
+                        return False
+    return True
+
+def player_1():
+    a = input("Which field you wanna choose?").split(" ")
+    try:
+        x = int(a[0])
+        y = int(a[1])
+        if field[x][y] == "#":
+            field[x][y] = "X"
+        else:
+            print("Chose an empty field!")
+            player_1()      
+    except:
+        print("Use this format pls: 2 2")
+        player_1()   
+        
+    
+def player_2():
+    a = input("Which field you wanna choose?").split(" ")
+    try:
+        x = int(a[0])
+        y = int(a[1])
+        if field[x][y] == "#":
+            field[x][y] = "O"
+        else:
+            print("Chose an empty field!")
+            player_2()      
+    except:
+        print("Use this format pls: 2 2")
+        player_2()   
+    
+
+
+def main(): 
+    print_field() 
+    x= 0 
+    while winner_check() == True:
+        if x % 2 == 0:
+            print("player1")
+            player_1()
+            print_field()
+            x += 1 
+            
+        else:
+            print("player2")
+            player_2()
+            print_field()
+            x +=1
+
+main()
